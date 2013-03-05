@@ -1,0 +1,53 @@
+<html>	
+	<head>		
+		<script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>		
+		<script src="helper.js"></script>		
+		<script>
+		$(document).ready(function()
+		{ 				
+			$("#btnSubmit").click(function()
+			{
+				var user = $('#username').val();
+				var pass = $('#password').val();
+				
+				
+				var login_url  	= BASE_URL + '/rest/login/' + user + '/' + pass;				
+				var next_url    = BASE_URL + '/view/secret.html?id=';				
+								
+				 $.ajax({
+					url: login_url,
+					dataType: 'json',
+					success: function( data ) {
+					  window.location = next_url + data;
+					},
+					error: function( data ) {
+					  alert('Invalid Username or Password');
+					}
+				  });				
+				
+			 });
+		}); 
+
+	
+		</script>
+	
+	</head>
+	
+	<div>
+		<fieldset>
+			<legend>Login Form</legend>
+			
+			<p>
+				<label for="username">Username</label><br />
+				<input type="text" name="username" value="nmartin" id="username">
+			</p>
+			<p>
+				<label for="password">Password</label><br />
+				<input type="password" name="password" value="nmartin" id="password">
+			</p>
+			
+		</fieldset>
+		<p><input type="submit" id="btnSubmit" value="Login"></p>
+	</div>
+	
+<html>	
